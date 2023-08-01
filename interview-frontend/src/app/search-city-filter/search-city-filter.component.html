@@ -3,8 +3,8 @@
     <input type="text" placeholder="Enter city" formControlName="searchValue" class="searchBarInput">
   </form>
   <div class="citiesTable">
-    <div class="cities" *ngFor="let city of cities">
-      {{city.cityName}}
+    <div *ngFor="let city of cities">
+      <div [innerHTML]="city.cityName"></div>
     </div>
   </div>
 </div>

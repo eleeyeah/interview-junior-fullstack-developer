@@ -18,6 +18,12 @@ export class CitiesService {
       results = this.cities.filter((city) =>
         city.cityName.toLowerCase().includes(name_like.toLowerCase()),
       );
+      results = results.map((city) => {
+        // Highlight the letters in the city name that match the search term
+        const regex = new RegExp(`(${name_like})`, 'gi');
+        city.cityName = city.cityName.replace(regex, '<strong>$1</strong>');
+        return city;
+      });
     } else {
       results = this.cities;
     }
