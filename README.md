@@ -13,7 +13,7 @@ As you can already spot, both are javascript applications, which is by far the m
 1. On the frontend replace the existing content with a form where you can search for a city and list the results in some list formatted below.
 2. On the backend prepare an endpoint to return the list of the cities which is matching the entry submitted from the frontend. Ideally, you will return up to 5 entries per page.
 
-    In the root of this repository there is [cities.json](./cities.json) file - this should mock your database.
+   In the root of this repository there is [cities.json](./cities.json) file - this should mock your database.
 
 ## Tips
 
@@ -26,11 +26,13 @@ As you can already spot, both are javascript applications, which is by far the m
 ## Are you done?
 
 You can give us the accomplished assignment in 2 ways of your choice:
+
 1. Create a fork of our repository and send us a link to your Github repository when you are finished, or
 2. Remove `node_modules` folder in both applications pack it into an archive and send it over an email.
 
 ## Further help
 
 To get more help on:
+
 - Angular check out the [Angular docs](https://angular.io/docs) page
 - NestJS check out the [NestJS docs](https://docs.nestjs.com) page

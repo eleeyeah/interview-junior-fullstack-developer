@@ -11,13 +11,22 @@ export class CitiesService {
     this.cities = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   }
 
-  getCities(name_like?: string): any {
+  getCities(name_like: string, page = 1, limit = 5): any {
+    let results: any[];
+
     if (name_like) {
-      return this.cities.filter((city) =>
+      results = this.cities.filter((city) =>
         city.cityName.toLowerCase().includes(name_like.toLowerCase()),
       );
     } else {
-      return this.cities;
+      results = this.cities;
     }
+
+    // Calculate start and end index for pagination
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    // Return only the portion of results for this page
+    return results.slice(startIndex, endIndex);
   }
 }
