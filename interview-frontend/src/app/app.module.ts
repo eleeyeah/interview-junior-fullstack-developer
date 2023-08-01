@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchCityFilterModule } from './search-city-filter/search-city-filter.module';
@@ -12,7 +12,8 @@ import { SearchCityFilterModule } from './search-city-filter/search-city-filter.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SearchCityFilterModule
+    SearchCityFilterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

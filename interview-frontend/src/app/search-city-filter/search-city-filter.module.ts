@@ -9,7 +9,7 @@ import { SearchCityFilterComponent } from './search-city-filter.component';
     SearchCityFilterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     SearchCityFilterComponent
