@@ -18,7 +18,7 @@ export class CitiesService {
         city.cityName.toLowerCase().includes(name_like.toLowerCase()),
       );
     } else {
-      return this.cities;
+      return [];
     }
   }
 }

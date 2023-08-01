@@ -20,9 +20,7 @@ export class SearchCityFilterComponent implements OnInit {
     private fb: FormBuilder
     ) { }
 
-  ngOnInit(): void {
-    this.fetchCities();
-  }
+  ngOnInit(): void {}
 
   fetchCities(): void {
     this.searchCityFilterService.getCities(this.searchValue).subscribe((cities) => {
