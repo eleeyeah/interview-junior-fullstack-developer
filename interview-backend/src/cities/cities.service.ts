@@ -12,7 +12,13 @@ export class CitiesService {
     { id: 7, cityName: 'Rome', count: 10 },
   ];
 
-  getCities() {
-    return this.cities;
+  getCities(name_like: string) {
+    if (name_like) {
+      return this.cities.filter((city) =>
+        city.cityName.toLowerCase().includes(name_like.toLowerCase()),
+      );
+    } else {
+      return this.cities;
+    }
   }
 }

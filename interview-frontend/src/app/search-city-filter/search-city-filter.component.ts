@@ -31,7 +31,7 @@ export class SearchCityFilterComponent implements OnInit {
   }
 
   onSearchSubmit(): void {
-    this.searchValue = this.searchForm.value.searchValue ?? '';
+    this.searchValue = this.searchForm.value.searchValue || '';
     this.fetchCities();
 
   }
