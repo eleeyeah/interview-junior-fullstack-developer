@@ -1,1 +1,10 @@
-<p>search-city-filter works!</p>
+<div class="container">
+  <form [formGroup]="searchForm" class="searchCities" (ngSubmit)="onSearchSubmit()">
+    <input type="text" placeholder="Enter city" formControlName="searchValue" class="searchBarInput">
+  </form>
+  <div class="citiesTable">
+    <div class="cities" *ngFor="let city of cities">
+      {{city.cityName}}
+    </div>
+  </div>
+</div>

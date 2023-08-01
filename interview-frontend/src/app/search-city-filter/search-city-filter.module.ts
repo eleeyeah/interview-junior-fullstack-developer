@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchCityFilterComponent } from './search-city-filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -10,6 +11,7 @@ import { SearchCityFilterComponent } from './search-city-filter.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     SearchCityFilterComponent

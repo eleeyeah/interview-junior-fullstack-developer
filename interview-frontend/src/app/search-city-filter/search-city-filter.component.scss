@@ -1,0 +1,30 @@
+.container {
+  margin: 50px auto 0;
+  width: 500px;
+}
+
+.searchCities {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &Clear {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  &Input {
+    height: 30px;
+    width: 300px;
+    font-size: 16px;
+  }
+}
+
+.citiesTable {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.cities {
+  margin: 10px 0;
+}
