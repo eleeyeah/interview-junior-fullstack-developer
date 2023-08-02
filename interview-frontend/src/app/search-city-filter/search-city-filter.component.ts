@@ -10,9 +10,13 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./search-city-filter.component.scss']
 })
 export class SearchCityFilterComponent implements OnInit {
-
+  // The value entered into the search input
   searchValue= '';
+
+  // The cities to display
   cities: SearchCityFilterInterface[] = [];
+
+  // The form for the search input
   searchForm = this.fb.nonNullable.group({searchValue: '',})
 
 
@@ -23,27 +27,33 @@ export class SearchCityFilterComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // Fetch cities from the API
   fetchCities(): void {
-    this.cities = []; // reset cities
+    // Reset cities
+    this.cities = [];
 
+    // Get cities from the API
     this.searchCityFilterService.getCities(this.searchValue).subscribe((cities) => {
       this.cities = cities;
     });
   }
 
+  // Handle the form submission
   onSearchSubmit(): void {
+    // Get the search value from the form
     this.searchValue = this.searchForm.value.searchValue || '';
 
-     // Trim the search value to remove leading and trailing whitespace
+    // Trim the search value to remove leading and trailing whitespace
     this.searchValue = this.searchValue.trim();
 
-  // Check if the search value is empty
-  if (this.searchValue === '') {
-    // If the search value is empty, reset cities and return early
-    this.cities = [];
-    return;
-  }
+    // Check if the search value is empty
+    if (this.searchValue === '') {
+      // If the search value is empty, reset cities and return early
+      this.cities = [];
+      return;
+    }
 
+    // If the search value is not empty, fetch cities from the API
     this.fetchCities();
   }
 }

@@ -12,24 +12,29 @@ export class CitiesService {
     this.cities = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   }
 
+  // Returns true if the string starts with the prefix, ignoring case
+  private startsWithIgnoreCase(str: string, prefix: string): boolean {
+    return str.toLowerCase().startsWith(prefix.toLowerCase());
+  }
+
+  // Returns an array of cities matching the name_like parameter
   getCities(name_like: string, page = 1, limit = 5): any {
     let results: any[];
 
     if (name_like) {
-      // Filter the cities based on the name_like parameter
+      // Filter the cities based on the name_like parameter using the custom startsWithIgnoreCase function
       results = this.cities.filter((city: { cityName: string }) => {
-        return city.cityName.toLowerCase().includes(name_like.toLowerCase());
+        return this.startsWithIgnoreCase(city.cityName, name_like);
       });
 
       // Highlight the letters in the city name that match the search input
       const regex = new RegExp(`(${name_like})`, 'giu');
       results = results.map((city) => {
-        const cityCopy = { ...city }; //* Create a deep copy of the city object to avoid mutating the original
+        const cityCopy = { ...city }; //* Create a deep copy of the city object to avoid mutating the original object
         cityCopy.cityName = city.cityName.replace(regex, '<strong>$1</strong>');
         return cityCopy;
       });
     } else {
-      // If there is no name_like parameter, return all cities
       results = this.cities;
     }
 
