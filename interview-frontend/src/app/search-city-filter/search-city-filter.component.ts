@@ -23,6 +23,9 @@ export class SearchCityFilterComponent implements OnInit {
   ngOnInit(): void {}
 
   fetchCities(): void {
+
+    this.cities = []; // reset cities
+
     this.searchCityFilterService.getCities(this.searchValue).subscribe((cities) => {
       this.cities = cities;
     });

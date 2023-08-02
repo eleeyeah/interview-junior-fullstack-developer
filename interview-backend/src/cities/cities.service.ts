@@ -15,12 +15,12 @@ export class CitiesService {
     let results: any[];
 
     if (name_like) {
-      results = this.cities.filter((city) =>
+      results = this.cities.filter((city: { cityName: string }) =>
         city.cityName.toLowerCase().includes(name_like.toLowerCase()),
       );
       results = results.map((city) => {
-        // Highlight the letters in the city name that match the search term
-        const regex = new RegExp(`(${name_like})`, 'gi');
+        // Highlight the letters in the city name that match the search input
+        const regex = new RegExp(`(${name_like})`, 'giu');
         city.cityName = city.cityName.replace(regex, '<strong>$1</strong>');
         return city;
       });
