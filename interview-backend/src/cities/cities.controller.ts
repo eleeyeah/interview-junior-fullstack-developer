@@ -6,6 +6,7 @@ export class CitiesController {
   CitiesService: any;
   constructor(private citiesService: CitiesService) {}
 
+  // Get cities filtered by name
   @Get()
   getCities(@Query('name_like') name_like: string) {
     return this.citiesService.getCities(name_like);

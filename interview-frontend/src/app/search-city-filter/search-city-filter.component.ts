@@ -1,3 +1,4 @@
+
 import { SearchCityFilterInterface } from './search-city-filter.interface';
 import { SearchCityFilterService } from './search-city-filter.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +24,6 @@ export class SearchCityFilterComponent implements OnInit {
   ngOnInit(): void {}
 
   fetchCities(): void {
-
     this.cities = []; // reset cities
 
     this.searchCityFilterService.getCities(this.searchValue).subscribe((cities) => {
@@ -35,7 +35,7 @@ export class SearchCityFilterComponent implements OnInit {
     this.searchValue = this.searchForm.value.searchValue || '';
 
      // Trim the search value to remove leading and trailing whitespace
-  this.searchValue = this.searchValue.trim();
+    this.searchValue = this.searchValue.trim();
 
   // Check if the search value is empty
   if (this.searchValue === '') {
@@ -44,9 +44,6 @@ export class SearchCityFilterComponent implements OnInit {
     return;
   }
 
-
     this.fetchCities();
-
   }
-
 }

@@ -7,6 +7,7 @@ export class CitiesService {
   private cities: any;
 
   constructor() {
+    // Load the cities.json file into memory
     const filePath = path.resolve(__dirname, '../../../cities.json');
     this.cities = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   }
@@ -15,16 +16,20 @@ export class CitiesService {
     let results: any[];
 
     if (name_like) {
-      results = this.cities.filter((city: { cityName: string }) =>
-        city.cityName.toLowerCase().includes(name_like.toLowerCase()),
-      );
+      // Filter the cities based on the name_like parameter
+      results = this.cities.filter((city: { cityName: string }) => {
+        return city.cityName.toLowerCase().includes(name_like.toLowerCase());
+      });
+
+      // Highlight the letters in the city name that match the search input
+      const regex = new RegExp(`(${name_like})`, 'giu');
       results = results.map((city) => {
-        // Highlight the letters in the city name that match the search input
-        const regex = new RegExp(`(${name_like})`, 'giu');
-        city.cityName = city.cityName.replace(regex, '<strong>$1</strong>');
-        return city;
+        const cityCopy = { ...city }; //* Create a deep copy of the city object to avoid mutating the original
+        cityCopy.cityName = city.cityName.replace(regex, '<strong>$1</strong>');
+        return cityCopy;
       });
     } else {
+      // If there is no name_like parameter, return all cities
       results = this.cities;
     }
 
@@ -33,6 +38,9 @@ export class CitiesService {
     const endIndex = page * limit;
 
     // Return only the portion of results for this page
-    return results.slice(startIndex, endIndex);
+    const paginatedResults = results.slice(startIndex, endIndex);
+    console.log('paginatedResults:', paginatedResults); // This will print the paginated results
+
+    return paginatedResults;
   }
 }

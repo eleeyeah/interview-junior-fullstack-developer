@@ -1,7 +1,9 @@
 <div class="container">
+  <!-- Search bar -->
   <form [formGroup]="searchForm" class="searchCities" (ngSubmit)="onSearchSubmit()">
     <input type="text" placeholder="Enter city" formControlName="searchValue" class="searchBarInput">
   </form>
+  <!-- Cities table -->
   <div class="citiesTable">
     <div *ngFor="let city of cities">
       <div [innerHTML]="city.cityName"></div>

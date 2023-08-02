@@ -1,5 +1,5 @@
 export interface SearchCityFilterInterface {
-  id: number;
+  id: string;
   cityName: string;
   count: number;
  }

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SearchCityFilterComponent } from './search-city-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [
     SearchCityFilterComponent
