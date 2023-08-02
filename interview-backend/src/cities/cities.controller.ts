@@ -8,7 +8,10 @@ export class CitiesController {
 
   // Get cities filtered by name
   @Get()
-  getCities(@Query('name_like') name_like: string) {
-    return this.citiesService.getCities(name_like);
+  getCities(
+    @Query('name_like') name_like: string,
+    @Query('page') page: number,
+  ) {
+    return this.citiesService.getCities(name_like, page);
   }
 }

@@ -5,6 +5,7 @@ import * as path from 'path';
 @Injectable()
 export class CitiesService {
   private cities: any;
+  private resultCount: number;
 
   constructor() {
     // Load the cities.json file into memory
@@ -18,7 +19,7 @@ export class CitiesService {
   }
 
   // Returns an array of cities matching the name_like parameter
-  getCities(name_like: string, page = 1, limit = 5): any {
+  getCities(name_like: string, page: number, limit = 5): any {
     let results: any[];
 
     if (name_like) {
@@ -26,6 +27,8 @@ export class CitiesService {
       results = this.cities.filter((city: { cityName: string }) => {
         return this.startsWithIgnoreCase(city.cityName, name_like);
       });
+
+      this.resultCount = results.length;
 
       // Highlight the letters in the city name that match the search input
       const regex = new RegExp(`(${name_like})`, 'giu');
@@ -46,6 +49,9 @@ export class CitiesService {
     const paginatedResults = results.slice(startIndex, endIndex);
     console.log('paginatedResults:', paginatedResults); // This will print the paginated results
 
-    return paginatedResults;
+    return {
+      results: paginatedResults,
+      resultCount: this.resultCount,
+    };
   }
 }

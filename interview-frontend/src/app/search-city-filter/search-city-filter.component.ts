@@ -12,9 +12,13 @@ import { FormBuilder } from '@angular/forms';
 export class SearchCityFilterComponent implements OnInit {
   // The value entered into the search input
   searchValue= '';
+  page = 1; // The current page number
+  numberOfButtons = 0;
+
 
   // The cities to display
   cities: SearchCityFilterInterface[] = [];
+  citiesCount = 0;
 
   // The form for the search input
   searchForm = this.fb.nonNullable.group({searchValue: '',})
@@ -27,16 +31,35 @@ export class SearchCityFilterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // Fetch cities from the API
-  fetchCities(): void {
-    // Reset cities
-    this.cities = [];
 
-    // Get cities from the API
-    this.searchCityFilterService.getCities(this.searchValue).subscribe((cities) => {
-      this.cities = cities;
-    });
-  }
+ // Fetch cities from the API
+fetchCities(page: number): void {
+  // Reset cities
+  this.cities = [];
+
+  // Get cities from the API
+  this.searchCityFilterService.getCities(this.searchValue, page).subscribe({
+    next: (response) => {
+      // console.log(response); // The entire response object from NestJS
+
+      if (response) {
+        this.cities = response.results;
+        this.citiesCount = response.resultCount;
+        this.numberOfButtons = Math.ceil(this.citiesCount / 5);
+      } else {
+        this.cities = [];
+        this.citiesCount = 0;
+        this.numberOfButtons = 0;
+      }
+    },
+    error: (error) => {
+      console.error('Error fetching data:', error);
+      this.cities = [];
+      this.citiesCount = 0;
+      this.numberOfButtons = 0;
+    }
+  });
+}
 
   // Handle the form submission
   onSearchSubmit(): void {
@@ -54,6 +77,11 @@ export class SearchCityFilterComponent implements OnInit {
     }
 
     // If the search value is not empty, fetch cities from the API
-    this.fetchCities();
+    this.fetchCities(1);
+  }
+
+  // Handle the page change
+  getButtonRange(): number[] {
+    return Array(this.numberOfButtons).fill(0).map((_, i) => i + 1);
   }
 }

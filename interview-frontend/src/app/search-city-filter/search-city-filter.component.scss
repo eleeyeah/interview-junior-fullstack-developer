@@ -1,12 +1,17 @@
 .container {
   margin: 50px auto 0;
   width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .searchCities {
+  padding-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 
   &Clear {
     margin-left: 10px;
@@ -14,17 +19,67 @@
   }
 
   &Input {
-    height: 30px;
+    padding: 20px; // Increased padding
     width: 300px;
     font-size: 16px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #495057;
+      color: white;
+    }
   }
 }
 
 .citiesTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 80px;
   text-align: center;
+
+  .cities {
+    margin: 10px 0;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    padding: 10px 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #495057;
+      color: white;
+    }
+  }
 }
 
-.cities {
-  margin: 10px 0;
+// Pagination styling
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  .button {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #495057;
+      color: white;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SearchCityFilterInterface } from './search-city-filter.interface';
+import { ResultsInterface } from './search-city-filter.interface';
 
 
 
@@ -12,7 +12,7 @@ export class SearchCityFilterService {
 
   constructor(private http: HttpClient) { }
 
-  getCities(searchValue: string): Observable<SearchCityFilterInterface[]> {
-    return this.http.get<SearchCityFilterInterface[]>(`http://localhost:3000/cities?name_like=${searchValue}`);
+  getCities(searchValue: string, page: number): Observable<ResultsInterface> {
+    return this.http.get<ResultsInterface>(`http://localhost:3000/cities?page=${page}&name_like=${searchValue}`);
   }
 }

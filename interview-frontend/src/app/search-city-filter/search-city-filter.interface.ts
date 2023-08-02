@@ -3,3 +3,8 @@ export interface SearchCityFilterInterface {
   cityName: string;
   count: number;
  }
+
+ export interface ResultsInterface {
+  results: SearchCityFilterInterface[];
+  resultCount: number;
+ }
