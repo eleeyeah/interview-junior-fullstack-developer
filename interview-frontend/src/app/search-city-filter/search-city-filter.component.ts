@@ -33,6 +33,18 @@ export class SearchCityFilterComponent implements OnInit {
 
   onSearchSubmit(): void {
     this.searchValue = this.searchForm.value.searchValue || '';
+
+     // Trim the search value to remove leading and trailing whitespace
+  this.searchValue = this.searchValue.trim();
+
+  // Check if the search value is empty
+  if (this.searchValue === '') {
+    // If the search value is empty, reset cities and return early
+    this.cities = [];
+    return;
+  }
+
+
     this.fetchCities();
 
   }
