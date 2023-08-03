@@ -12,7 +12,7 @@ export class SearchCityFilterService {
 
   constructor(private http: HttpClient) { }
 
-  getCities(searchValue: string, page: number): Observable<ResultsInterface> {
-    return this.http.get<ResultsInterface>(`http://localhost:3000/cities?page=${page}&name_like=${searchValue}`);
+  getCities(searchValue: string, page: number, pageSize: number): Observable<ResultsInterface> {
+    return this.http.get<ResultsInterface>(`http://localhost:3000/cities?page=${page}&page_size=${pageSize}&name_like=${searchValue}`);
   }
 }

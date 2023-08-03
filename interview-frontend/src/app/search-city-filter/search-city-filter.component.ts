@@ -14,6 +14,7 @@ export class SearchCityFilterComponent implements OnInit {
   searchValue= '';
   page = 1; // The current page number
   numberOfButtons = 0;
+  pageSize = 5; //* Decide how many cities to display per page
 
 
   // The cities to display
@@ -38,14 +39,14 @@ fetchCities(page: number): void {
   this.cities = [];
 
   // Get cities from the API
-  this.searchCityFilterService.getCities(this.searchValue, page).subscribe({
+  this.searchCityFilterService.getCities(this.searchValue, page, this.pageSize).subscribe({
     next: (response) => {
       // console.log(response); // The entire response object from NestJS
 
       if (response) {
         this.cities = response.results;
         this.citiesCount = response.resultCount;
-        this.numberOfButtons = Math.ceil(this.citiesCount / 5);
+        this.numberOfButtons = Math.ceil(this.citiesCount / this.pageSize);
       } else {
         this.cities = [];
         this.citiesCount = 0;

@@ -19,7 +19,7 @@ export class CitiesService {
   }
 
   // Returns an array of cities matching the name_like parameter
-  getCities(name_like: string, page: number, limit = 5): any {
+  getCities(name_like: string, page: number, pageSize: number): any {
     let results: any[];
 
     if (name_like) {
@@ -42,8 +42,8 @@ export class CitiesService {
     }
 
     // Calculate start and end index for pagination
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = page * pageSize;
 
     // Return only the portion of results for this page
     const paginatedResults = results.slice(startIndex, endIndex);

@@ -11,7 +11,8 @@ export class CitiesController {
   getCities(
     @Query('name_like') name_like: string,
     @Query('page') page: number,
+    @Query('page_size') pageSize: number,
   ) {
-    return this.citiesService.getCities(name_like, page);
+    return this.citiesService.getCities(name_like, page, pageSize);
   }
 }
