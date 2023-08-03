@@ -1,25 +1,42 @@
-import { CitiesService } from './cities.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CitiesController } from './cities.controller';
+import { CitiesService } from './cities.service';
 
 describe('CitiesController', () => {
   let controller: CitiesController;
-
-  const mockCitiesService = {};
+  let service: CitiesService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CitiesController],
       providers: [CitiesService],
-    })
-      .overrideProvider(CitiesService)
-      .useValue(mockCitiesService)
-      .compile();
+    }).compile();
 
     controller = module.get<CitiesController>(CitiesController);
+    service = module.get<CitiesService>(CitiesService);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  describe('getCities', () => {
+    it('should return an array of cities', async () => {
+      const mockCities = [
+        { id: 1, name: 'City A' },
+        { id: 2, name: 'City B' },
+      ];
+      jest
+        .spyOn(service, 'getCities')
+        .mockImplementation(async () => mockCities);
+
+      const queryParams = { name_like: 'City', page: 1 };
+      const result = await controller.getCities(
+        queryParams.name_like,
+        queryParams.page,
+      );
+
+      expect(service.getCities).toHaveBeenCalledWith(
+        queryParams.name_like,
+        queryParams.page,
+      );
+      expect(result).toEqual(mockCities);
+    });
   });
 });
