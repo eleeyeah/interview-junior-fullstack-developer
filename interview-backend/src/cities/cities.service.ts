@@ -54,4 +54,9 @@ export class CitiesService {
       resultCount: this.resultCount,
     };
   }
+
+  getAllCities() {
+    console.log(this.cities);
+    return this.cities;
+  }
 }

@@ -6,13 +6,19 @@ export class CitiesController {
   CitiesService: any;
   constructor(private citiesService: CitiesService) {}
 
+  //* Default Controller Path
+  @Get('')
+  getAllCities() {
+    return this.citiesService.getAllCities();
+  }
+
   // Get cities filtered by name
-  @Get()
+  @Get(':filter')
   getCities(
     @Query('name_like') name_like: string,
     @Query('page') page: number,
-    @Query('page_size') pageSize: number,
+    @Query('page_size') page_size: number,
   ) {
-    return this.citiesService.getCities(name_like, page, pageSize);
+    return this.citiesService.getCities(name_like, page, page_size);
   }
 }

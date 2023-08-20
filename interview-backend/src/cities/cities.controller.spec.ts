@@ -26,15 +26,17 @@ describe('CitiesController', () => {
         .spyOn(service, 'getCities')
         .mockImplementation(async () => mockCities);
 
-      const queryParams = { name_like: 'City', page: 1 };
+      const queryParams = { name_like: 'City', page: 1, pageSize: 10 };
       const result = await controller.getCities(
         queryParams.name_like,
         queryParams.page,
+        queryParams.pageSize,
       );
 
       expect(service.getCities).toHaveBeenCalledWith(
         queryParams.name_like,
         queryParams.page,
+        queryParams.pageSize,
       );
       expect(result).toEqual(mockCities);
     });
